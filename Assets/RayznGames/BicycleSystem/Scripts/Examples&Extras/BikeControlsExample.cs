@@ -2,6 +2,7 @@
 using rayzngames;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 
 namespace rayzngames
@@ -26,10 +27,13 @@ namespace rayzngames
         public GameObject bikeCamera;   // Assign the Bike's Cinemachine virtual camera
 
         private bool playerNearby = false;
+        [SerializeField] private TextMeshProUGUI mountbiketext;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
+            mountbiketext.gameObject.SetActive(false);
+
             if (playerCamera != null) playerCamera.SetActive(true);
             if (bikeCamera != null) bikeCamera.SetActive(false);
             bicycle = GetComponent<BicycleVehicle>();
@@ -50,6 +54,7 @@ namespace rayzngames
             {
                 controllingBike = true;
                 Debug.Log("Player mounted the bike.");
+                mountbiketext.gameObject.SetActive(false);
                 if (playerObject != null) playerObject.SetActive(false);
                 if (bikeObject != null) bikeObject.SetActive(true);
                 // Switch to bike camera
@@ -106,6 +111,7 @@ namespace rayzngames
             {
                 playerNearby = true;
                 Debug.Log("Player is near the bike. Press E to mount.");
+                mountbiketext.gameObject.SetActive(true);
             }
         }
 
