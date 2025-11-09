@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 // مهم جداً: أضف هذا السطر للوصول إلى نظام الإدخال الجديد
 using UnityEngine.InputSystem;
 
@@ -11,12 +12,37 @@ public class EquipmentManager : MonoBehaviour
     public Camera playerCamera;
 
     private GameObject currentWeapon;
+    [SerializeField] private TextMeshProUGUI takeWeaponText;
 
 
     // Raycast-based pickup: no trigger methods needed
 
     void Update()
     {
+        if (takeWeaponText != null)
+        {
+            if (currentWeapon == null)
+            {
+                Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit, pickupRange))
+                {
+                    if (hit.transform.CompareTag("Weapon"))
+                    {
+                        takeWeaponText.gameObject.SetActive(true);
+                        takeWeaponText.text = "Press F to take weapon";
+                    }
+                    else
+                    {
+                        takeWeaponText.gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    takeWeaponText.gameObject.SetActive(false);
+                }
+            }
+        }
         // Use Input System to check for F key
         if (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
         {
@@ -30,6 +56,7 @@ public class EquipmentManager : MonoBehaviour
                     if (hit.transform.CompareTag("Weapon"))
                     {
                         Pickup(hit.transform.gameObject);
+                        takeWeaponText.gameObject.SetActive(false);
                     }
                 }
             }

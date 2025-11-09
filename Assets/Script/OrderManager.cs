@@ -13,8 +13,8 @@ public class OrderManager : MonoBehaviour
     public float deliverDistance = 2f;
 
     [Header("UI")]
-    public TextMeshProUGUI lootssoldText; // Assign a UI Text element in the inspector
-    public TextMeshProUGUI carryingLootsText; // Assign a UI Text element in the inspector
+    public TextMeshProUGUI evidenceinofficetext; // Assign a UI Text element in the inspector
+    public TextMeshProUGUI evidenceincarrytext; // Assign a UI Text element in the inspector
     private List<GameObject> carriedOrders = new List<GameObject>();
     private int deliveredOrdersCount = 0;
 
@@ -48,13 +48,13 @@ public class OrderManager : MonoBehaviour
 
     void UpdateUI()
     {
-        if (lootssoldText != null)
+        if (evidenceinofficetext != null)
         {
-            lootssoldText.text = "Loots Sold: " + deliveredOrdersCount;
+            evidenceinofficetext.text = "Evidence in Office: " + deliveredOrdersCount;
         }
-        if (carryingLootsText != null)
+        if (evidenceincarrytext != null)
         {
-            carryingLootsText.text = "Carrying Loots: " + carriedOrders.Count;
+            evidenceincarrytext.text = "Evidence in Carry: " + carriedOrders.Count;
         }
     }
 }
