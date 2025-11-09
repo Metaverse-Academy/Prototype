@@ -7,6 +7,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform cameraTransform;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource footstepAudio;
+    [SerializeField] private AudioClip[] footstepClips; // multiple random footstep sounds
+    [SerializeField] private float stepInterval = 0.5f; // how often to play
+    private float stepTimer;
+
     [Header("Move")]
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float acceleration = 12f;
@@ -50,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
         isGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
+        HandleFootsteps();
     }
 
     private void HandleMovement()
@@ -84,6 +91,29 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // #region Input System Callbacks
+
+    private void HandleFootsteps()
+    {
+    if (!isGrounded || planarMoveDir.sqrMagnitude < 0.1f)
+    {
+        stepTimer = 0f;
+        return;
+    }
+
+    stepTimer -= Time.deltaTime;
+        if (stepTimer <= 0f)
+        {
+            if (footstepClips.Length > 0 && footstepAudio != null)
+            {
+                int index = Random.Range(0, footstepClips.Length);
+                footstepAudio.PlayOneShot(footstepClips[index]);
+            }
+
+            // Reset timer depending on movement speed
+            float currentSpeed = isSprinting ? sprintSpeed : (isCrouching ? crouchSpeed : walkSpeed);
+            stepTimer = stepInterval * (5f / currentSpeed); // faster steps when running
+        }
+    }
 
     void OnMove(InputValue value)
     {
