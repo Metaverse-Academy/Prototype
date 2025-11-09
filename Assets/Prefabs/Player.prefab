@@ -327,6 +327,8 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: -8818210345356645471, guid: 20d7f63b1fa2f3948a553dc4c39d79a0, type: 3}
         Gain: 1
+        LegacyInput: 
+        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -338,6 +340,8 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: -8818210345356645471, guid: 20d7f63b1fa2f3948a553dc4c39d79a0, type: 3}
         Gain: -1
+        LegacyInput: 
+        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -520,6 +524,30 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c725e9b5-32ea-486f-97fe-121309bd4347
     m_ActionName: 'Player/Interact[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 63d74702-f196-497b-8f0f-9ba8c198b5de
+    m_ActionName: 'Player/Fire[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8e860f2f-9eb4-45c9-8453-4466af4ba6aa
+    m_ActionName: 'Player/Interact1[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc90974e-c2a9-4d8c-891e-480438bb121e
+    m_ActionName: 'Player/Enter[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 72a53460-ec1f-426b-9c43-d5e7a3fbd97c
+    m_ActionName: 'Bike/Accelerate[/Keyboard/w,/Keyboard/upArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 32c8a7f0-eb78-4eb2-9c2c-289d0075eff1
+    m_ActionName: 'Bike/Brake[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a09c57b-ec41-4958-b241-2959d83cdc16
+    m_ActionName: 'Bike/Steer[/Keyboard/a,/Keyboard/d]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -583,7 +611,7 @@ MonoBehaviour:
   jumpForce: 5
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   groundDistanceCheck: 0.3
   rayStartOffset: 0.06
   useToggleCrouch: 1
@@ -608,7 +636,7 @@ MonoBehaviour:
   interactDistance: 3
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   showDebugRay: 0
   fadeDuration: 0.2
   scalePop: 1.1
