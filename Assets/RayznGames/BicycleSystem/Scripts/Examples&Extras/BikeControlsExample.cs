@@ -2,6 +2,8 @@
 using rayzngames;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using Unity.VisualScripting;
 
 
 namespace rayzngames
@@ -12,6 +14,7 @@ namespace rayzngames
         [Header("References")]
         public GameObject playerObject; // Assign your player GameObject in the inspector
         public GameObject bikeObject;   // Assign your bike GameObject in the inspector (this GameObject)
+        [SerializeField] private TextMeshProUGUI infoText;
 
         [Header("Audio")]
         public AudioSource engineAudio; // assign in inspector
@@ -33,6 +36,7 @@ namespace rayzngames
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
+            infoText.gameObject.SetActive(false);
             if (playerCamera != null) playerCamera.SetActive(true);
             if (bikeCamera != null) bikeCamera.SetActive(false);
             bicycle = GetComponent<BicycleVehicle>();
@@ -53,6 +57,7 @@ namespace rayzngames
             {
                 controllingBike = true;
                 Debug.Log("Player mounted the bike.");
+                infoText.gameObject.SetActive(false);
                 if (engineAudio != null && !engineAudio.isPlaying) engineAudio.Play();
                 if (playerObject != null) playerObject.SetActive(false);
                 if (bikeObject != null) bikeObject.SetActive(true);
@@ -118,6 +123,7 @@ namespace rayzngames
             {
                 playerNearby = true;
                 Debug.Log("Player is near the bike. Press E to mount.");
+                infoText.gameObject.SetActive(true);
             }
         }
 

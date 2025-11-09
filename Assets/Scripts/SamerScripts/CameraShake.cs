@@ -16,6 +16,7 @@ public class CameraShake : MonoBehaviour
         Instance = this;
         cinemachineCam = GetComponent<CinemachineCamera>();
         noise = (CinemachineBasicMultiChannelPerlin)cinemachineCam.GetCinemachineComponent(CinemachineCore.Stage.Noise);
+        noise.AmplitudeGain = 0f;
     }
 
     public void Shake(float intensity, float time)
