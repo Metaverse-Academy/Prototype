@@ -36,7 +36,6 @@ namespace rayzngames
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
-            infoText.gameObject.SetActive(false);
             if (playerCamera != null) playerCamera.SetActive(true);
             if (bikeCamera != null) bikeCamera.SetActive(false);
             bicycle = GetComponent<BicycleVehicle>();
@@ -52,6 +51,14 @@ namespace rayzngames
         // Update is called once per frame
         void Update()
         {
+            if (!controllingBike && playerNearby)
+            {
+                infoText.gameObject.SetActive(true);
+            }
+            else
+            {
+                infoText.gameObject.SetActive(false);
+            }
             // Mount bike if player is nearby and presses E
             if (!controllingBike && playerNearby && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
             {
@@ -105,7 +112,7 @@ namespace rayzngames
                 {
                     float speed = bicycle.GetComponent<Rigidbody>().linearVelocity.magnitude;
                     engineAudio.pitch = Mathf.Lerp(1f, 2f, speed / 20f); // adjust 20f for max speed
-                    }
+                }
 
             }
             else

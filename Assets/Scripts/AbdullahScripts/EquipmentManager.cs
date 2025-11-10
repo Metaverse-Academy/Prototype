@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 // مهم جداً: أضف هذا السطر للوصول إلى نظام الإدخال الجديد
 using UnityEngine.InputSystem;
+using System;
 
 public class EquipmentManager : MonoBehaviour
 {
@@ -13,10 +14,16 @@ public class EquipmentManager : MonoBehaviour
 
     private GameObject currentWeapon;
     [SerializeField] private TextMeshProUGUI takeWeaponText;
+    [SerializeField] private TextMeshProUGUI Mission1Text;
+    [SerializeField] private TextMeshProUGUI Mission2Text;
 
 
     // Raycast-based pickup: no trigger methods needed
-
+    void Awake()
+    {
+        Mission1Text.gameObject.SetActive(true);
+        Mission2Text.gameObject.SetActive(false);
+    }
     void Update()
     {
         if (takeWeaponText != null)
@@ -57,6 +64,8 @@ public class EquipmentManager : MonoBehaviour
                     {
                         Pickup(hit.transform.gameObject);
                         takeWeaponText.gameObject.SetActive(false);
+                        Mission1Text.gameObject.SetActive(false);
+                        Mission2Text.gameObject.SetActive(true);
                     }
                 }
             }
