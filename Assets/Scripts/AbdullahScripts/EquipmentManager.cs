@@ -13,7 +13,7 @@ public class EquipmentManager : MonoBehaviour
     public LayerMask weaponLayerMask;
     private GameObject highlightedWeapon;
 
-    private GameObject currentWeapon;
+    [HideInInspector]public GameObject currentWeapon;
     [SerializeField] private TextMeshProUGUI takeWeaponText;
 
     void Update()
