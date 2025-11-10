@@ -3535,6 +3535,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1476221641012487414, guid: c670e787f5b44594fb1f247feb5dae49, type: 3}
+      propertyPath: infoText
+      value: 
+      objectReference: {fileID: 831097024}
+    - target: {fileID: 1476221641012487414, guid: c670e787f5b44594fb1f247feb5dae49, type: 3}
       propertyPath: engineAudio
       value: 
       objectReference: {fileID: 1653934278}
@@ -10773,7 +10777,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 7e061eba118c294438769f49a4f7cabf, type: 2}
   m_BuildHeightMesh: 0
