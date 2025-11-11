@@ -54,6 +54,7 @@ namespace rayzngames
             if (!controllingBike && playerNearby)
             {
                 infoText.gameObject.SetActive(true);
+                Debug.Log("Press E to mount the bike.");
             }
             else
             {
