@@ -21,6 +21,20 @@ public class WeaponController : MonoBehaviour
 
     public void Shoot()
     {
+
+        if (playerTransform != null && playerCamera != null)
+    {
+        // Aligns the player to the camera direction instantly
+        Vector3 forward = playerCamera.transform.forward;
+        forward.y = 0f;
+        forward.Normalize();
+
+        if (forward.sqrMagnitude > 0.001f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(forward, Vector3.up);
+            playerTransform.rotation = targetRot;
+        }
+    }
         // --- تشغيل التأثيرات البصرية ---
         if (muzzleFlash != null)
         {

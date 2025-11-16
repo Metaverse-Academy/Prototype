@@ -98,7 +98,10 @@ public class EquipmentManager : MonoBehaviour
             WeaponController wc = currentWeapon.GetComponent<WeaponController>();
             if (wc != null)
             {
-                wc.Shoot();
+                if (wc != null){
+                    wc.playerTransform = player; // assign player reference
+                    wc.Shoot();
+                    }
             }
         }
     }
