@@ -73,6 +73,13 @@ public class PlayerMovement : MonoBehaviour
         Vector3 v = rb.linearVelocity;
         Vector3 vH = Vector3.Lerp(new Vector3(v.x, 0f, v.z), targetVelH, acceleration * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector3(vH.x, v.y, vH.z);
+
+         // Rotate only when moving
+    if (planarMoveDir.sqrMagnitude > 0.1f)
+    {
+        Quaternion targetRot = Quaternion.LookRotation(planarMoveDir, Vector3.up);
+        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, 10f * Time.fixedDeltaTime));
+    }
     }
 
     private void ApplyCrouchState()

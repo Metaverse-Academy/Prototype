@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
+    [Header("Camera Settings")]
+    public Transform playerTransform;
+    public float rotateSpeed = 10f; // how fast to face camera before firing
     [Header("Weapon Settings")]
     public float damage = 25f;          // مقدار الضرر لكل طلقة
     public float range = 100f;          // مدى إطلاق النار
