@@ -37,7 +37,7 @@ public class EquipmentManager : MonoBehaviour
                     if (hit.transform.CompareTag("Weapon"))
                     {
                         takeWeaponText.gameObject.SetActive(true);
-                        takeWeaponText.text = "Press F to take weapon";
+                        //takeWeaponText.text = "Press F to take weapon";
                     }
                     else
                     {
