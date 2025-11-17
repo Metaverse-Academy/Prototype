@@ -98,7 +98,7 @@ Material:
     - _SupportDecals: 1
     - _SurfaceType: 0
     - _TileAmmount: 0.5
-    - _TilesDarkening: -1
+    - _TilesDarkening: 0
     - _TilesDetailNoiseScale: 20
     - _TilesGrungeDetailScale: 50
     - _TilesMetallic: 0
@@ -124,7 +124,7 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _MortarColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _TileShape: {r: 20, g: 20, b: 0, a: 0}
+    - _TileShape: {r: 50, g: 50, b: 0, a: 0}
     - _TilesColor: {r: 1, g: 0.743561, b: 0.4764151, a: 1}
     - _TilesWidth_Height: {r: 0.9, g: 0.85, b: 0, a: 0}
     - _Width_Height: {r: 0.5, g: 0.5, b: 0, a: 0}
