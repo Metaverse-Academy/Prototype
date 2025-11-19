@@ -280,7 +280,7 @@
                     "name": "",
                     "id": "c9057f7d-f8c5-451a-bc15-cea07dc06318",
                     "path": "<Keyboard>/shift",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",

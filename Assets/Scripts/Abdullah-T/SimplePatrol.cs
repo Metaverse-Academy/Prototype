@@ -9,12 +9,16 @@ public class SimplePatrol : MonoBehaviour
     public Transform pathParent;
 
     [Tooltip("سرعة حركة الشخصية")]
-    public float moveSpeed = 2.5f;
+    //public float moveSpeed = 2.5f;
 
     private Transform[] patrolPoints;
     private int currentPointIndex = 0;
     private NavMeshAgent agent;
     private Animator animator; // للتحكم في حركة المشي
+    public Transform modelRoot;
+
+    // New: store a randomized order of points for this agent
+    private Transform[] randomizedPatrolPoints;
 
     void Start()
     {
@@ -44,8 +48,13 @@ public class SimplePatrol : MonoBehaviour
             return;
         }
 
-        // اضبط السرعة وابدأ الحركة نحو النقطة الأولى
-        agent.speed = moveSpeed;
+        agent.updateRotation = false; // <--- Add this line
+        agent.angularSpeed = 0;       // <--- Optional: disables agent's own turning
+
+        // Randomize the patrol points for this agent
+        randomizedPatrolPoints = (Transform[])patrolPoints.Clone();
+        ShufflePatrolPoints(randomizedPatrolPoints);
+
         GoToNextPoint();
     }
 
@@ -57,20 +66,33 @@ public class SimplePatrol : MonoBehaviour
             GoToNextPoint();
         }
 
-        // تحديث حركة المشي في Animator
-        if (animator != null)
+        Vector3 velocity = agent.velocity;
+        velocity.y = 0; // تجاهل المحور الرأسي
+        if (velocity.magnitude > 0.1f)
         {
-            // اجعل قيمة "Speed" في الـ Animator تساوي سرعة الـ Agent الحالية
-            animator.SetFloat("Speed", agent.velocity.magnitude);
+            Quaternion targetRotation = Quaternion.LookRotation(velocity);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 8f);
         }
     }
 
     void GoToNextPoint()
     {
-        // اختر النقطة التالية في المسار
-        agent.SetDestination(patrolPoints[currentPointIndex].position);
+        // اختر النقطة التالية في المسار (randomized)
+        agent.SetDestination(randomizedPatrolPoints[currentPointIndex].position);
 
         // جهز المؤشر للنقطة التي تليها
-        currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+        currentPointIndex = (currentPointIndex + 1) % randomizedPatrolPoints.Length;
+    }
+
+    // Fisher-Yates shuffle
+    void ShufflePatrolPoints(Transform[] points)
+    {
+        for (int i = points.Length - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            Transform temp = points[i];
+            points[i] = points[j];
+            points[j] = temp;
+        }
     }
 }
