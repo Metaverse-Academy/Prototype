@@ -21,7 +21,6 @@ public class WeaponController : MonoBehaviour
 
     public void Shoot()
     {
-
         if (playerTransform != null && playerCamera != null)
     {
         // Aligns the player to the camera direction instantly

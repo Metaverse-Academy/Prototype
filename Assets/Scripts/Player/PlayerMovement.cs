@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform cameraTransform;
 
+    [Header("Animation")]
+    private Animator animator;
+
     [Header("Audio")]
     [SerializeField] private AudioSource footstepAudio;
     [SerializeField] private AudioClip[] footstepClips; // multiple random footstep sounds
@@ -37,11 +40,18 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isSprinting;
     private bool isCrouching;
+    private EquipmentManager equipmentManager;
+
+     private void Start()
+    {
+        equipmentManager = GetComponent<EquipmentManager>();
+    }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
+        animator = GetComponentInChildren<Animator>();
 
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
@@ -57,6 +67,20 @@ public class PlayerMovement : MonoBehaviour
         Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
         isGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
         HandleFootsteps();
+        float currentSpeed = rb.linearVelocity.magnitude;
+        //Debug.Log("Current Speed: " + currentSpeed.ToString("F2"));
+        Debug.Log("Sprinting: " + isSprinting);
+
+
+        // Update animator parameters
+        if (animator != null)
+        {
+            animator.SetFloat("MoveX", moveInput.x);
+            animator.SetFloat("MoveY", moveInput.y);
+            animator.SetBool("IsSprinting", isSprinting);
+            animator.SetBool("IsCrouching", isCrouching);
+            animator.SetBool("HasGun", equipmentManager.currentWeapon != null);
+        }
     }
 
     private void HandleMovement()
@@ -84,11 +108,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyCrouchState()
     {
-        if (capsule)
-            capsule.height = isCrouching ? crouchHeight : standingHeight;
+        if (capsule == null) return;
 
-        if (isCrouching)
-            isSprinting = false;
+    if (isCrouching)
+    {
+        capsule.height = crouchHeight;
+        capsule.center = new Vector3(0, crouchHeight / 2f, 0);
+        isSprinting = false;
+    }
+    else
+    {
+        capsule.height = standingHeight;
+        capsule.center = new Vector3(0, standingHeight / 2f, 0);
+    }
     }
 
     private void OnDrawGizmos()
@@ -137,8 +169,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnSprint(InputValue value)
     {
-        if (value.isPressed) isSprinting = true;
-        else isSprinting = false;
+        isSprinting = value.isPressed && moveInput.y > 0.1f && !isCrouching;
     }
 
     void OnCrouch(InputValue value)
