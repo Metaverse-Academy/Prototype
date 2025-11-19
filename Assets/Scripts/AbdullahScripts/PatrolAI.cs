@@ -17,7 +17,7 @@ public class PatrolAI : MonoBehaviour
 
     [Header("Chase Settings")]
     public float chaseSpeed = 6f;       // سرعة العدو عند المطاردة
-    private bool isPlayerSpotted = false;
+    public bool isPlayerSpotted = false;
 
     private int currentPointIndex = 0;
     private NavMeshAgent agent;
@@ -45,7 +45,7 @@ public class PatrolAI : MonoBehaviour
         {
             // --- وضع المطاردة ---
             agent.speed = chaseSpeed;
-            agent.SetDestination(player.position); // طارد اللاعب
+            agent.SetDestination(player.position + Vector3.forward * 5f); // طارد اللاعب
         }
         else
         {
