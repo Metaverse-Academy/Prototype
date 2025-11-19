@@ -66,10 +66,11 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
         isGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
+        Debug.Log("Is Grounded: " + isGrounded);
         HandleFootsteps();
         float currentSpeed = rb.linearVelocity.magnitude;
         //Debug.Log("Current Speed: " + currentSpeed.ToString("F2"));
-        Debug.Log("Sprinting: " + isSprinting);
+        //Debug.Log("Sprinting: " + isSprinting);
 
 
         // Update animator parameters
@@ -163,7 +164,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value.isPressed && isGrounded)
         {
+            Debug.Log("Jump!");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            animator.SetTrigger("Jump");
         }
     }
 
