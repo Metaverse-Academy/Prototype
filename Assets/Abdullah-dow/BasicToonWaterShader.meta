@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Recovery/0 (6).unity.meta
+guid: 23d58e74f299fd848a5a2fabc90d6ef5
+========
 guid: 1d7b0f4831aad0b4e9ab66a1e83d62be
 folderAsset: yes
+>>>>>>>> main:Assets/Abdullah-dow/BasicToonWaterShader.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

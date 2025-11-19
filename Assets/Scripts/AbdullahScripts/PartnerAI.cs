@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class PartnerAI : MonoBehaviour
 {
     public Transform player;
+    public Animator animator;
     public Transform bike;
     public Transform bikeSeat; // The seat/position for the partner on the bike
     public float followDistance = 2.5f;
@@ -24,6 +25,9 @@ public class PartnerAI : MonoBehaviour
         // Subscribe to the PLAYER's weapon, not the partner's own weapon
         if (playerWeaponController != null)
             playerWeaponController.OnShoot += PartnerShoot;
+
+        if (animator == null)
+            animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -51,9 +55,8 @@ public class PartnerAI : MonoBehaviour
 
     void PartnerShoot()
     {
-        if (weaponController != null)
-            weaponController.Shoot();
-        Debug.Log("Partner is shooting!");
+        weaponController.Shoot();
+        animator.SetTrigger("shoot");
     }
 
     void FollowPlayer()
@@ -62,9 +65,17 @@ public class PartnerAI : MonoBehaviour
         {
             float dist = Vector3.Distance(transform.position, player.position);
             if (dist > followDistance)
+            {
                 agent.SetDestination(player.position);
+                if (animator != null)
+                    animator.SetBool("isWalking", true); // Set your walking parameter
+            }
             else
+            {
                 agent.ResetPath();
+                if (animator != null)
+                    animator.SetBool("isWalking", false);
+            }
         }
     }
 
@@ -83,6 +94,7 @@ public class PartnerAI : MonoBehaviour
     {
         isOnBike = true;
         agent.enabled = false;
+        animator.SetBool("isWalking", false);
         // Optionally: disable partner's collider or animator here
     }
 

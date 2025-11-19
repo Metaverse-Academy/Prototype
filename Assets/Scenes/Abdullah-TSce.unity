@@ -640,7 +640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeapon
   attackRadius: 10
   fireRate: 1
-  damage: 10
+  damage: 30
   bulletSpeed: 30
   firePoint: {fileID: 276038276}
   bulletPrefab: {fileID: 183844, guid: c6a5af2ca13ceb043a1375ffd988f43e, type: 3}
@@ -4537,7 +4537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeapon
   attackRadius: 10
   fireRate: 1
-  damage: 10
+  damage: 30
   bulletSpeed: 30
   firePoint: {fileID: 1774404614}
   bulletPrefab: {fileID: 183844, guid: c6a5af2ca13ceb043a1375ffd988f43e, type: 3}
@@ -13519,7 +13519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWeapon
   attackRadius: 10
   fireRate: 1
-  damage: 10
+  damage: 30
   bulletSpeed: 30
   firePoint: {fileID: 603437628}
   bulletPrefab: {fileID: 183844, guid: c6a5af2ca13ceb043a1375ffd988f43e, type: 3}
@@ -23397,11 +23397,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60.000004
+  near clip plane: 0.1
+  far clip plane: 5000
+  field of view: 60
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -23425,8 +23425,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511005201}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1474.1384, y: 1.6277101, z: -1619.7118}
+  m_LocalRotation: {x: 0.15123986, y: 0, z: 0, w: 0.98849714}
+  m_LocalPosition: {x: 1477.3284, y: 2.8517342, z: -1623.1952}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25925,8 +25925,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568751915}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.900024, y: -1.5439999, z: -3.4510498}
+  m_LocalRotation: {x: 0.15123986, y: 0, z: 0, w: 0.98849714}
+  m_LocalPosition: {x: 13.089966, y: -0.31997585, z: -6.9344482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29544,7 +29544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
-  healthText: {fileID: 0}
+  healthHeartImage: {fileID: 34368896}
 --- !u!1001 &1859155973
 PrefabInstance:
   m_ObjectHideFlags: 0
