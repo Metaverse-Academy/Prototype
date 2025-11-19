@@ -17,10 +17,12 @@ public class WeaponController : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;     // assign in inspector
     public AudioClip gunshotClip;       // assign in inspector
-   
+    public event System.Action OnShoot;
+
 
     public void Shoot()
     {
+    OnShoot?.Invoke();
         if (playerTransform != null && playerCamera != null)
     {
         // Aligns the player to the camera direction instantly
