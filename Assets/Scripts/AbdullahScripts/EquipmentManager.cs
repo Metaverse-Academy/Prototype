@@ -150,24 +150,38 @@ public class EquipmentManager : MonoBehaviour
         currentWeapon.transform.SetParent(weaponHolder);
         currentWeapon.transform.localPosition = Vector3.zero;
         currentWeapon.transform.localRotation = Quaternion.identity;
+         
+        Animator anim = player.GetComponentInChildren<Animator>();
+        anim.SetBool("HasGun", true);
     }
 
     void DropWeapon()
     {
-        if (currentWeapon == null) return;
-
-        Debug.Log("Dropping weapon: " + currentWeapon.name);
-        currentWeapon.transform.SetParent(null);
-
-        Rigidbody rb = currentWeapon.GetComponent<Rigidbody>();
-        Collider col = currentWeapon.GetComponent<Collider>();
-
-        if (rb != null) rb.isKinematic = false;
-        if (col != null) col.enabled = true;
-
-        rb.AddForce(playerCamera.transform.forward * 5f, ForceMode.Impulse);
-        currentWeapon = null;
+        Animator anim = player.GetComponentInChildren<Animator>();
+        anim.SetTrigger("ThrowWeaponTrigger");
     }
+
+    public void OnDropWeaponRelease()
+{
+    if (currentWeapon == null) return;
+
+    // Detach weapon
+    currentWeapon.transform.SetParent(null);
+
+    Rigidbody rb = currentWeapon.GetComponent<Rigidbody>();
+    Collider col = currentWeapon.GetComponent<Collider>();
+
+    if (rb != null) rb.isKinematic = false;
+    if (col != null) col.enabled = true;
+
+    // Throw force
+    rb.AddForce(playerCamera.transform.forward * 5f + Vector3.up * 2f, ForceMode.Impulse);
+
+    // Clear reference
+    currentWeapon = null;
+    Animator anim = player.GetComponentInChildren<Animator>();
+    anim.SetBool("HasGun", false);
+}
 
     void OnDrawGizmosSelected()
     {

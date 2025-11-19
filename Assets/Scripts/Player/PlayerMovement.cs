@@ -40,6 +40,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isSprinting;
     private bool isCrouching;
+    private EquipmentManager equipmentManager;
+
+     private void Start()
+    {
+        equipmentManager = GetComponent<EquipmentManager>();
+    }
 
     private void Awake()
     {
@@ -73,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("MoveY", moveInput.y);
             animator.SetBool("IsSprinting", isSprinting);
             animator.SetBool("IsCrouching", isCrouching);
+            animator.SetBool("HasGun", equipmentManager.currentWeapon != null);
         }
     }
 
@@ -101,11 +108,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyCrouchState()
     {
-        if (capsule)
-            capsule.height = isCrouching ? crouchHeight : standingHeight;
+        if (capsule == null) return;
 
-        if (isCrouching)
-            isSprinting = false;
+    if (isCrouching)
+    {
+        capsule.height = crouchHeight;
+        capsule.center = new Vector3(0, crouchHeight / 2f, 0);
+        isSprinting = false;
+    }
+    else
+    {
+        capsule.height = standingHeight;
+        capsule.center = new Vector3(0, standingHeight / 2f, 0);
+    }
     }
 
     private void OnDrawGizmos()
