@@ -25,6 +25,7 @@ public class MainMenuManager : MonoBehaviour
 
     private List<Color> targetColors;
     private AudioSource audioSource; // متغير لحفظ مكون الصوت
+    public string cutsceneSceneName = "Cutscene1";
 
     void Start()
     {
@@ -111,7 +112,7 @@ public class MainMenuManager : MonoBehaviour
     // --- (دوال التحكم بالأزرار تبقى كما هي) ---
     public void StartGame()
     {
-        SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene(cutsceneSceneName);
     }
 
     public void QuitGame()
