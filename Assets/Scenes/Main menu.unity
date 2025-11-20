@@ -1735,7 +1735,7 @@ MonoBehaviour:
   - {fileID: 908261841}
   transitionDuration: 0.5
   delayBetweenCycles: 0.5
-  gameSceneName: Main menu
+  gameSceneName: Game
   hoverSound: {fileID: 8300000, guid: 84acea8373f6fa448822a9e733d17be0, type: 3}
 --- !u!4 &1696998100
 Transform:

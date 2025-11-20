@@ -1,6 +1,7 @@
 // PlayerHealth.cs
 using UnityEngine;
 using UnityEngine.UI; // <-- مهم جداً: أضف هذا السطر للتحكم بالصور
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerHealth : MonoBehaviour
     [Header("Health UI")]
     [Tooltip("اسحب هنا كائن 'Heart_Fill' الذي يمثل القلب الممتلئ")]
     public Image healthHeartImage; // <-- إضافة جديدة: هذا هو المتغير الخاص بالقلب
+
+
 
     void Start()
     {
@@ -25,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = 0;
         }
-        
+
         UpdateHealthUI();
         Debug.Log("Player took " + amount + " damage. Current health: " + currentHealth);
 
@@ -52,5 +55,6 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player Died!");
         // يمكنك إضافة منطق الموت هنا
         gameObject.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
