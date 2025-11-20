@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -13,40 +14,39 @@ public class WeaponController : MonoBehaviour
     [Header("Effects")]
     public ParticleSystem muzzleFlash;  // تأثير وميض الفوهة (اختياري)
     public GameObject impactEffect;     // تأثير الارتطام بالأسطح (اختياري)
-    
+
     [Header("Audio")]
     public AudioSource audioSource;     // assign in inspector
     public AudioClip gunshotClip;       // assign in inspector
     public event System.Action OnShoot;
 
-
     public void Shoot()
     {
-    OnShoot?.Invoke();
+        OnShoot?.Invoke();
         if (playerTransform != null && playerCamera != null)
-    {
-        // Aligns the player to the camera direction instantly
-        Vector3 forward = playerCamera.transform.forward;
-        forward.y = 0f;
-        forward.Normalize();
-
-        if (forward.sqrMagnitude > 0.001f)
         {
-            Quaternion targetRot = Quaternion.LookRotation(forward, Vector3.up);
-            playerTransform.rotation = targetRot;
+            // Aligns the player to the camera direction instantly
+            Vector3 forward = playerCamera.transform.forward;
+            forward.y = 0f;
+            forward.Normalize();
+
+            if (forward.sqrMagnitude > 0.001f)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(forward, Vector3.up);
+                playerTransform.rotation = targetRot;
+            }
         }
-    }
         // --- تشغيل التأثيرات البصرية ---
         if (muzzleFlash != null)
         {
             muzzleFlash.Play();
         }
 
-          if (audioSource != null && gunshotClip != null)
+        if (audioSource != null && gunshotClip != null)
             audioSource.PlayOneShot(gunshotClip);
 
         if (CameraShake.Instance != null)
-        CameraShake.Instance.Shake(2f, 0.2f); // (intensity, duration)
+            CameraShake.Instance.Shake(2f, 0.2f); // (intensity, duration)
 
         // --- الجزء الأهم: إطلاق الشعاع (Raycast) ---
         RaycastHit hitInfo; // متغير لتخزين معلومات الاصطدام

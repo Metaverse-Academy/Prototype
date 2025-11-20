@@ -20,9 +20,11 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private GameObject delevereffect;
 
 
+
     [Header("UI")]
-    public TextMeshProUGUI evidenceinofficetext; // Assign a UI Text element in the inspector
-    public TextMeshProUGUI evidenceincarrytext; // Assign a UI Text element in the inspector
+    public TextMeshProUGUI evidenceinofficetext;
+    public TextMeshProUGUI evidenceincarrytext;
+    [SerializeField] private TextMeshProUGUI wontext;
     private List<GameObject> carriedOrders = new List<GameObject>();
     private int deliveredOrdersCount = 0;
     void Awake()
@@ -66,10 +68,17 @@ public class OrderManager : MonoBehaviour
             if (evidenceinofficetext != null)
             {
                 evidenceinofficetext.text = "Evidence in Office: " + deliveredOrdersCount;
+
+
             }
             if (evidenceincarrytext != null)
             {
-                evidenceincarrytext.text = "Evidence in Carry: " + carriedOrders.Count;
+                evidenceincarrytext.text = "Evidence in Carry: " + carriedOrders.Count + " out of " + orders.Count;
+
+            }
+            if (deliveredOrdersCount >= orders.Count)
+            {
+                wontext.gameObject.SetActive(true);
             }
         }
     }
