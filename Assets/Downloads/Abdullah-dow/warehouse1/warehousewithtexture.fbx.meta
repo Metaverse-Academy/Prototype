@@ -1,0 +1,260 @@
+fileFormatVersion: 2
+guid: e0662d08cddd08d4d81da8b2606e3562
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bricks - London Victorian Floor Tiles
+    second: {fileID: 2100000, guid: 3523965ce1c05e54b9d31c1820a977ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Corrugated Steel.001
+    second: {fileID: 2100000, guid: e3e49ebb7f3e8d147843f72d979643ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Corrugated Steel.003
+    second: {fileID: 2100000, guid: 41ccddaddfd36614190bca229d1a8bbe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Corrugated Steel.005
+    second: {fileID: 2100000, guid: 52e0dc4aee0380f42a3f90010ab985c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Generic Control Panel
+    second: {fileID: 2100000, guid: 07efbcb18bd9822429edd392eb773f06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red Small Brick
+    second: {fileID: 2100000, guid: cf875423ac8790e43b235f8dcb35c65d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof Tiles Lichen
+    second: {fileID: 2100000, guid: 0730f5caa2f18b046afeba2c2df9fa91, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Control_panel_Mounted_02_BaseColor
+    second: {fileID: 2800000, guid: 56776608727c445449d28b6629048a4e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Control_panel_Mounted_02_Emissive
+    second: {fileID: 2800000, guid: 3bbfb43b184871a43a0d0cb0bf68dd08, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Control_panel_Mounted_02_Metallic
+    second: {fileID: 2800000, guid: a2cdc65ce721d904abb0e35c5c0949c7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Control_panel_Mounted_02_Normal
+    second: {fileID: 2800000, guid: a2c5c10336c3df147af6733ab147e58a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Control_panel_Mounted_02_Roughness
+    second: {fileID: 2800000, guid: 35a98461ecff32348a44a38f72c36fc2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_06_BaseColor
+    second: {fileID: 2800000, guid: a3bf47ee9811c6444a939384c6a391dd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_06_Metallic
+    second: {fileID: 2800000, guid: a6b6252c11aa49149a842da8a94846d9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_06_Normal
+    second: {fileID: 2800000, guid: 30dc0110cf7540344a6dcac60e78d183, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_06_Roughness
+    second: {fileID: 2800000, guid: 347a1bbb5e1db2f479c9cc16de21d3ef, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_08_BaseColor
+    second: {fileID: 2800000, guid: 12e48e2b4193ce846bc31761885978d7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_08_Metallic
+    second: {fileID: 2800000, guid: b830ef12f61a7d04daa5621c1c92cf90, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_08_Normal
+    second: {fileID: 2800000, guid: 2623a5a9180de12498e2d52feda9408e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_08_Roughness
+    second: {fileID: 2800000, guid: ddc6829250975a246932e147ba618876, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_10_BaseColor
+    second: {fileID: 2800000, guid: 9ad67d71434f3d0478db9eb173f0415d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_10_Metallic
+    second: {fileID: 2800000, guid: 90fc34079b528cf41b0ec4f2d5221c3b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_10_Normal
+    second: {fileID: 2800000, guid: 21e2e4b781488ec4e821cad28cf80012, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: GWC_Corrugated_Steel_10_Roughness
+    second: {fileID: 2800000, guid: 52f0f41080c8b8947bbe512fe12d8ce1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Red Small Brick_BaseColor
+    second: {fileID: 2800000, guid: 48a6156290e87e04cb2bd6b7e4a2dfc1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Red Small Brick_Normal
+    second: {fileID: 2800000, guid: c108fc39af4ed3b47b2126d10909008b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Red Small Brick_Roughness
+    second: {fileID: 2800000, guid: 027503dfeea37054983241008f77744d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: roof-tile-6_roughness
+    second: {fileID: 2800000, guid: f5599fd625101104fbb3b33c1590d114, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: tiles-25_diffuse
+    second: {fileID: 2800000, guid: 17f6b19b18ba11a4995f23482731f981, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: tiles-25_roughness
+    second: {fileID: 2800000, guid: 09e69a2320846d945a33012d1e2c194d, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
