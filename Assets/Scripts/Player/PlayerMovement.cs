@@ -42,9 +42,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching;
     private EquipmentManager equipmentManager;
 
-     private void Start()
+    private void Start()
     {
         equipmentManager = GetComponent<EquipmentManager>();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Awake()
@@ -66,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
         isGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
-        Debug.Log("Is Grounded: " + isGrounded);
         HandleFootsteps();
         float currentSpeed = rb.linearVelocity.magnitude;
         //Debug.Log("Current Speed: " + currentSpeed.ToString("F2"));
@@ -99,29 +100,30 @@ public class PlayerMovement : MonoBehaviour
         Vector3 vH = Vector3.Lerp(new Vector3(v.x, 0f, v.z), targetVelH, acceleration * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector3(vH.x, v.y, vH.z);
 
-         // Rotate only when moving
-    if (planarMoveDir.sqrMagnitude > 0.1f)
-    {
-        Quaternion targetRot = Quaternion.LookRotation(planarMoveDir, Vector3.up);
-        rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, 10f * Time.fixedDeltaTime));
-    }
+        // Rotate only when moving
+        if (planarMoveDir.sqrMagnitude > 0.5f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(planarMoveDir, Vector3.up);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRot, 10f * Time.fixedDeltaTime));
+        }
+        else planarMoveDir = Vector3.zero;
     }
 
     private void ApplyCrouchState()
     {
         if (capsule == null) return;
 
-    if (isCrouching)
-    {
-        capsule.height = crouchHeight;
-        capsule.center = new Vector3(0, crouchHeight / 2f, 0);
-        isSprinting = false;
-    }
-    else
-    {
-        capsule.height = standingHeight;
-        capsule.center = new Vector3(0, standingHeight / 2f, 0);
-    }
+        if (isCrouching)
+        {
+            capsule.height = crouchHeight;
+            capsule.center = new Vector3(0, crouchHeight / 2f, 0);
+            isSprinting = false;
+        }
+        else
+        {
+            capsule.height = standingHeight;
+            capsule.center = new Vector3(0, standingHeight / 2f, 0);
+        }
     }
 
     private void OnDrawGizmos()
@@ -134,13 +136,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleFootsteps()
     {
-    if (!isGrounded || planarMoveDir.sqrMagnitude < 0.1f)
-    {
-        stepTimer = 0f;
-        return;
-    }
+        if (!isGrounded || planarMoveDir.sqrMagnitude < 0.1f)
+        {
+            stepTimer = 0f;
+            return;
+        }
 
-    stepTimer -= Time.deltaTime;
+        stepTimer -= Time.deltaTime;
         if (stepTimer <= 0f)
         {
             if (footstepClips.Length > 0 && footstepAudio != null)
@@ -164,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value.isPressed && isGrounded)
         {
-            Debug.Log("Jump!");
+
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             animator.SetTrigger("Jump");
         }

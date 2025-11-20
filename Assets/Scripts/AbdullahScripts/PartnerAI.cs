@@ -1,6 +1,7 @@
 using rayzngames;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 
 public class PartnerAI : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class PartnerAI : MonoBehaviour
     void PartnerShoot()
     {
         weaponController.Shoot();
+        RotateTowardsHit();
         animator.SetTrigger("shoot");
     }
 
@@ -104,4 +106,23 @@ public class PartnerAI : MonoBehaviour
         agent.enabled = true;
         // Optionally: enable partner's collider or animator here
     }
+
+    void RotateTowardsHit()
+    {
+        if (weaponController == null || weaponController.playerCamera == null)
+            return;
+
+        // Use the camera's forward direction as the target direction
+        Vector3 targetDirection = weaponController.playerCamera.transform.forward;
+        targetDirection.y = 0; // Only rotate on the Y axis
+
+        if (targetDirection.sqrMagnitude > 0.001f)
+        {
+            Quaternion lookRotation = Quaternion.LookRotation(targetDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
+        }
+    }
+
+
+
 }
