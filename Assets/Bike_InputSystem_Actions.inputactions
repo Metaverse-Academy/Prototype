@@ -215,7 +215,7 @@
                     "id": "a8a0e977-b884-4093-90fe-c8c0659572bd",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "DeltaTimeScale,ScaleVector2(x=0.5,y=0.5)",
+                    "processors": "DeltaTimeScale,ScaleVector2(x=0.7,y=0.7)",
                     "groups": ";Gamepad",
                     "action": "Look",
                     "isComposite": false,
@@ -269,7 +269,7 @@
                     "name": "",
                     "id": "36f58118-692a-42d0-82ae-a8747eee11e2",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Enter",
@@ -280,7 +280,7 @@
                     "name": "",
                     "id": "a0edcb1d-c65b-486b-9f90-fea1b666bd35",
                     "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Enter",
@@ -429,6 +429,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "dd3b58b0-108a-4b9f-8c41-63a741cfe009",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -550,6 +559,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf985c71-5ad5-458e-8c97-cc8f2d03c185",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28249196-cb90-4335-9c12-e6fffbb2738a",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -385,11 +385,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineDeoccluder
   CollideAgainst:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   IgnoreTag: 
   TransparentLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   MinimumDistanceFromTarget: 0.3
   AvoidObstacles:
     Enabled: 1
@@ -399,7 +399,7 @@ MonoBehaviour:
     UseFollowTarget:
       Enabled: 0
       YOffset: 0
-    Strategy: 0
+    Strategy: 2
     MaximumEffort: 4
     SmoothingTime: 0
     Damping: 0.4
@@ -440,7 +440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.29497
+      value: -5.15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1147,6 +1147,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}
       insertIndex: -1
       addedObject: {fileID: 666339013210657724}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2301739659777675033}
   m_SourcePrefab: {fileID: 100100000, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}
 --- !u!1 &2354395521223600670 stripped
 GameObject:
@@ -1420,6 +1423,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2301739659777675033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2354395521223600670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b63373ad2a33d429e34033e6247817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleInteraction
+  bikeControls: {fileID: 0}
 --- !u!4 &3163689591987105956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}

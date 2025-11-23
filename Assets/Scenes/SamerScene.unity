@@ -951,7 +951,7 @@ Transform:
   m_GameObject: {fileID: 1424245416}
   serializedVersion: 2
   m_LocalRotation: {x: -0.057702385, y: 0.15498558, z: 0.009068285, w: 0.9861885}
-  m_LocalPosition: {x: -1.5923499, y: 2.31, z: 1.29497}
+  m_LocalPosition: {x: -1.5923499, y: 2.31, z: -9.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1367,6 +1367,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1666174065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1476221641012487414, guid: c670e787f5b44594fb1f247feb5dae49, type: 3}
+  m_PrefabInstance: {fileID: 401172166}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666174060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e349305d92773ad1bc14dfeb4dd4c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1696582678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2354395521223600670, guid: 85b400a991479e549a44ca2576eedd29, type: 3}
@@ -1589,6 +1600,10 @@ PrefabInstance:
       propertyPath: takeWeaponText
       value: 
       objectReference: {fileID: 1313056013}
+    - target: {fileID: 2301739659777675033, guid: 85b400a991479e549a44ca2576eedd29, type: 3}
+      propertyPath: bikeControls
+      value: 
+      objectReference: {fileID: 1666174065}
     - target: {fileID: 2354395521223600670, guid: 85b400a991479e549a44ca2576eedd29, type: 3}
       propertyPath: m_Name
       value: CoolPizzaDetective
@@ -1603,7 +1618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3163689591987105956, guid: 85b400a991479e549a44ca2576eedd29, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.29497
+      value: -5.15
       objectReference: {fileID: 0}
     - target: {fileID: 3163689591987105956, guid: 85b400a991479e549a44ca2576eedd29, type: 3}
       propertyPath: m_LocalRotation.w
