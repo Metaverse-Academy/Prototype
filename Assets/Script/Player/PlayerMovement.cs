@@ -7,8 +7,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform cameraTransform;
 
-private Vector2 lookInput;
-
     [Header("Animation")]
     private Animator animator;
 
