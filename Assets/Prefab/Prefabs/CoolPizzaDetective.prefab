@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 7143324671675622201}
   - component: {fileID: 226604042858892925}
   - component: {fileID: 6154855825266461436}
+  - component: {fileID: 9011581282265233031}
   m_Layer: 0
   m_Name: ThirdPerson Camera
   m_TagString: Untagged
@@ -230,7 +231,7 @@ MonoBehaviour:
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
+  Damping: {x: 0, y: 0}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -274,7 +275,7 @@ MonoBehaviour:
       Owner: {fileID: 6473867831401857399}
       Enabled: 1
       Input:
-        InputAction: {fileID: -8818210345356645471, guid: 20d7f63b1fa2f3948a553dc4c39d79a0, type: 3}
+        InputAction: {fileID: -3922019485138334038, guid: 15ef21abff6ceeb4c8f238d016e155d7, type: 3}
         Gain: 1
         LegacyInput: 
         LegacyGain: 1
@@ -287,7 +288,7 @@ MonoBehaviour:
       Owner: {fileID: 6473867831401857399}
       Enabled: 1
       Input:
-        InputAction: {fileID: -8818210345356645471, guid: 20d7f63b1fa2f3948a553dc4c39d79a0, type: 3}
+        InputAction: {fileID: -3922019485138334038, guid: 15ef21abff6ceeb4c8f238d016e155d7, type: 3}
         Gain: -1
         LegacyInput: 
         LegacyGain: 1
@@ -370,6 +371,45 @@ MonoBehaviour:
       m_Bits: 8
     MaximumRaycast: 10
     Damping: 0.5
+--- !u!114 &9011581282265233031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8271720518394624519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe43d662878a7c43bcd44d43c9e2094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineDeoccluder
+  CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  IgnoreTag: 
+  TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  MinimumDistanceFromTarget: 0.3
+  AvoidObstacles:
+    Enabled: 1
+    DistanceLimit: 0
+    MinimumOcclusionTime: 0
+    CameraRadius: 0.4
+    UseFollowTarget:
+      Enabled: 0
+      YOffset: 0
+    Strategy: 0
+    MaximumEffort: 4
+    SmoothingTime: 0
+    Damping: 0.4
+    DampingWhenOccluded: 0.2
+  ShotQualityEvaluation:
+    Enabled: 0
+    OptimalDistance: 10
+    NearLimit: 5
+    FarLimit: 30
+    MaxQualityBoost: 0.2
 --- !u!1001 &3201240823735818063
 PrefabInstance:
   m_ObjectHideFlags: 0
