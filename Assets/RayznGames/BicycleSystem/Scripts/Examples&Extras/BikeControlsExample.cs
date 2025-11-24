@@ -54,7 +54,6 @@ namespace rayzngames
             if (!controllingBike && playerNearby)
             {
                 infoText.gameObject.SetActive(true);
-                Debug.Log("Press E to mount the bike.");
             }
             else
             {
@@ -64,7 +63,6 @@ namespace rayzngames
             if (!controllingBike && playerNearby && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
             {
                 controllingBike = true;
-                Debug.Log("Player mounted the bike.");
                 infoText.gameObject.SetActive(false);
                 if (engineAudio != null && !engineAudio.isPlaying) engineAudio.Play();
                 if (playerObject != null) playerObject.SetActive(false);
@@ -92,7 +90,6 @@ namespace rayzngames
                 }
                 if (bikeObject != null) bikeObject.SetActive(false);
                 if (engineAudio != null && engineAudio.isPlaying) engineAudio.Stop();
-                Debug.Log("Player dismounted the bike.");
                 // Switch to player camera
                 if (playerCamera != null) playerCamera.SetActive(true);
                 if (bikeCamera != null) bikeCamera.SetActive(false);
@@ -130,7 +127,6 @@ namespace rayzngames
             if (other.gameObject == playerObject)
             {
                 playerNearby = true;
-                Debug.Log("Player is near the bike. Press E to mount.");
                 infoText.gameObject.SetActive(true);
             }
         }
