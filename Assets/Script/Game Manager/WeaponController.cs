@@ -55,7 +55,6 @@ public class WeaponController : MonoBehaviour
         // إذا اصطدم الشعاع بشيء ضمن المدى المحدد (range)...
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, range))
         {
-            Debug.Log("Hit: " + hitInfo.transform.name); // لطباعة اسم الكائن المصاب في الـ Console
 
             // --- تطبيق الضرر ---
             // ابحث عن سكربت الصحة (مثلاً EnemyHealth) على الكائن المصاب

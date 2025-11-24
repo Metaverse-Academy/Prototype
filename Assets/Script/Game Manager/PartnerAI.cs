@@ -12,10 +12,14 @@ public class PartnerAI : MonoBehaviour
     public float followDistance = 2.5f;
     public WeaponController weaponController;
     public WeaponController playerWeaponController; // Assign the player's weapon controller in the inspector
+    public OrderManager orderManager; // Reference to the OrderManager
+    public Transform boss; // Reference to the boss transform
 
     private NavMeshAgent agent;
     private bool isOnBike = false;
     private BikeControlsExample playerBikeController; // Reference to your player's bike controller
+    private bool meetingBoss = false;
+    public bool bossMet = false;
 
     void Start()
     {
@@ -33,6 +37,21 @@ public class PartnerAI : MonoBehaviour
 
     void Update()
     {
+        if (orderManager != null && orderManager.deliveredOrdersCount >= orderManager.orders.Count)
+        {
+            if (!meetingBoss)
+            {
+                Debug.Log("All orders delivered! Partner is meeting the boss.");
+                meetingBoss = true; // Set the flag
+            }
+        }
+
+        if (meetingBoss)
+        {
+            MeetBoss();
+            return; // Skip other logic
+        }
+
         if (playerBikeController != null && playerBikeController.controllingBike)
         {
             // Mount and follow bike
@@ -121,6 +140,23 @@ public class PartnerAI : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(targetDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 10f);
         }
+    }
+
+    void MeetBoss()
+    {
+        // Implement logic for meeting the boss when orders are delivered
+        // This could involve checking the orderManager's state and triggering animations or dialogues
+        agent.SetDestination(boss.position + Vector3.back * 1.5f); // Stop a bit before the boss
+        if (Vector3.Distance(transform.position, boss.position) < 2f)
+        {
+            agent.ResetPath();
+            animator.SetBool("isWalking", false);
+            //     animator.SetTrigger("meetBoss");
+            // Trigger any meeting animations or dialogues here
+            bossMet = true;
+
+        }
+
     }
 
 
