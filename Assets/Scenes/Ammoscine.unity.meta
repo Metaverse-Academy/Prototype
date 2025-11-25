@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Ammoscine.unity.meta
 guid: 60f5c028cf085a0488f3373cb1502c76
+========
+guid: 6ef9a367318e256439e10871a3b8b036
+>>>>>>>> Abdullah-FR:Assets/Scenes/BrokenScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

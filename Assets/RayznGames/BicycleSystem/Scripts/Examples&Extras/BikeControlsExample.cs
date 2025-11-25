@@ -133,23 +133,24 @@ namespace rayzngames
         }
         public void Mount()
         {
-            if(!playerNearby) return;
-            if(!controllingBike){
-            controllingBike = true;
-            Debug.Log("Mounted bike");
-            infoText.gameObject.SetActive(false);
-            if (engineAudio && !engineAudio.isPlaying)
-            engineAudio.Play();
-            
-            playerObject.SetActive(false);
-            bikeObject.SetActive(true);
-            playerCamera.SetActive(false);
-            bikeCamera.SetActive(true);
-            bicycle.InControl(true);
+            if (!playerNearby) return;
+            if (!controllingBike)
+            {
+                controllingBike = true;
+                Debug.Log("Mounted bike");
+                infoText.gameObject.SetActive(false);
+                if (engineAudio && !engineAudio.isPlaying)
+                    engineAudio.Play();
+
+                playerObject.SetActive(false);
+                bikeObject.SetActive(true);
+                playerCamera.SetActive(false);
+                bikeCamera.SetActive(true);
+                bicycle.InControl(true);
             }
-    }
-    private void Dismount()
-    {
+        }
+        private void Dismount()
+        {
             controllingBike = false;
             Debug.Log("Dismounted bike");
 
@@ -174,7 +175,7 @@ namespace rayzngames
             bikeCamera.SetActive(false);
 
             bicycle.InControl(false);
-            }
+        }
 
         // Detect player entering/exiting trigger
         void OnTriggerEnter(Collider other)
@@ -192,6 +193,7 @@ namespace rayzngames
             if (other.gameObject == playerObject)
             {
                 playerNearby = false;
+                infoText.gameObject.SetActive(false);
                 other.GetComponent<VehicleInteraction>().bikeControls = null;
             }
         }

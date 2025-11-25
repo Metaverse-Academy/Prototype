@@ -3,15 +3,17 @@ using UnityEngine;
 public class LimitMiniMapCamera : MonoBehaviour
 {
     public GameObject player;
-    public GameObject Bike;
+    public GameObject playeronBike;
 
     private void LateUpdate()
     {
-        if (Bike.activeInHierarchy)
+        if (playeronBike.activeInHierarchy)
         {
-            transform.position = new Vector3(Bike.transform.position.x, 40, Bike.transform.position.z);
-            return;
+            transform.position = new Vector3(playeronBike.transform.position.x, 40, playeronBike.transform.position.z);
         }
-        transform.position = new Vector3(player.transform.position.x, 40, player.transform.position.z);
+        else
+        {
+            transform.position = new Vector3(player.transform.position.x, 40, player.transform.position.z);
+        }
     }
 }
