@@ -274,7 +274,7 @@ MonoBehaviour:
       Owner: {fileID: 6473867831401857399}
       Enabled: 1
       Input:
-        InputAction: {fileID: -8818210345356645471, guid: 20d7f63b1fa2f3948a553dc4c39d79a0, type: 3}
+        InputAction: {fileID: -3922019485138334038, guid: 15ef21abff6ceeb4c8f238d016e155d7, type: 3}
         Gain: 1
         LegacyInput: 
         LegacyGain: 1
@@ -287,7 +287,7 @@ MonoBehaviour:
       Owner: {fileID: 6473867831401857399}
       Enabled: 1
       Input:
-        InputAction: {fileID: -8818210345356645471, guid: 20d7f63b1fa2f3948a553dc4c39d79a0, type: 3}
+        InputAction: {fileID: -3922019485138334038, guid: 15ef21abff6ceeb4c8f238d016e155d7, type: 3}
         Gain: -1
         LegacyInput: 
         LegacyGain: 1
@@ -400,7 +400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.29497
+      value: -5.15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1107,6 +1107,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}
       insertIndex: -1
       addedObject: {fileID: 666339013210657724}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6467133628720360675}
   m_SourcePrefab: {fileID: 100100000, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}
 --- !u!1 &2354395521223600670 stripped
 GameObject:
@@ -1138,7 +1141,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &5640135309354677425
 CapsuleCollider:
@@ -1380,6 +1383,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6467133628720360675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2354395521223600670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b63373ad2a33d429e34033e6247817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VehicleInteraction
+  bikeControls: {fileID: 0}
 --- !u!4 &3163689591987105956 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9097ff8171c4b8040886b8aea3198993, type: 3}

@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 public class EquipmentManager : MonoBehaviour
 {
@@ -19,8 +20,6 @@ public class EquipmentManager : MonoBehaviour
     void Update()
     {
         HandleWeaponDetection();
-        HandleInput();
-        HandleShooting();
     }
 
     void HandleWeaponDetection()
@@ -44,7 +43,7 @@ public class EquipmentManager : MonoBehaviour
         if (visibleWeapon != null)
         {
             takeWeaponText.gameObject.SetActive(true);
-            takeWeaponText.text = "Press F to take weapon";
+            takeWeaponText.text = "Press F/□ to take weapon";
             if (highlightedWeapon != visibleWeapon.gameObject)
             {
                 if (highlightedWeapon != null)
@@ -67,42 +66,37 @@ public class EquipmentManager : MonoBehaviour
         }
     }
 
-    void HandleInput()
-    {
-        if (Keyboard.current == null) return;
+    public void OnTakeGun(InputValue value)
+{
+    if (!value.isPressed) return;
 
-        if (Keyboard.current.fKey.wasPressedThisFrame)
+    if (currentWeapon == null)
+    {
+        Collider visibleWeapon = FindVisibleWeapon();
+        if (visibleWeapon != null)
         {
-            if (currentWeapon == null)
-            {
-                Collider visibleWeapon = FindVisibleWeapon();
-                if (visibleWeapon != null)
-                {
-                    Pickup(visibleWeapon.gameObject);
-                    takeWeaponText.gameObject.SetActive(false);
-                }
-            }
-            else
-            {
-                DropWeapon();
-            }
+            Pickup(visibleWeapon.gameObject);
+            takeWeaponText.gameObject.SetActive(false);
         }
     }
-
-    void HandleShooting()
+    else
     {
-        if (currentWeapon == null || Mouse.current == null) return;
-
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            WeaponController wc = currentWeapon.GetComponent<WeaponController>();
-            if (wc != null)
-            {
-                wc.playerTransform = player;
-                wc.Shoot();
-            }
-        }
+        DropWeapon();
     }
+}
+
+   public void OnShoot(InputValue value)
+{
+    if (!value.isPressed) return;
+    if (currentWeapon == null) return;
+
+    WeaponController wc = currentWeapon.GetComponent<WeaponController>();
+    if (wc != null)
+    {
+        wc.playerTransform = player;
+        wc.Shoot();
+    }
+}
 
     Collider FindVisibleWeapon()
     {
