@@ -1,16 +1,32 @@
 using UnityEngine;
+using UnityEngine.Playables; // Add this
 
 public class Timeline : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private string timelineName;
+    [SerializeField] private PlayableDirector playableDirector; // Add this
+    [SerializeField] private TMPro.TextMeshProUGUI currentmissionText;
+    [SerializeField] private TMPro.TextMeshProUGUI nextmissionText;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            PlayTimeline(timelineName);
+        }
+    }
+    public void PlayTimeline(string timelineName)
+    {
+        Debug.Log("Playing timeline: " + timelineName);
+        if (playableDirector != null)
+        {
+            playableDirector.Play();
+            currentmissionText.gameObject.SetActive(false);
+            nextmissionText.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("PlayableDirector not assigned!");
+        }
     }
 }
