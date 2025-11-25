@@ -109,4 +109,19 @@ public class PlayerHealth : MonoBehaviour
         hitEffectVolume.SetActive(false);
         isEffectActive = false;
     }
+        // --- **الدالة الجديدة التي أضفناها** ---
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+        // التأكد من أن الصحة لا تتجاوز الحد الأقصى
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        // تحديث واجهة المستخدم (القلب)
+        UpdateHealthUI();
+        Debug.Log("Player healed for " + amount + ". Current health: " + currentHealth);
+    }
+
 }

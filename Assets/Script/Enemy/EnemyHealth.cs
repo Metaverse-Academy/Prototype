@@ -7,10 +7,15 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Loot & Effects")]
     [Tooltip("الـ Prefab القابل للالتقاط الذي يحتوي على الطلقات")]
-    public GameObject ammoPickupPrefab; // <-- هذا هو المهم
+    public GameObject ammoPickupPrefab;
+
+    // --- **الإضافة الجديدة** ---
+    [Tooltip("الـ Prefab القابل للالتقاط الذي يحتوي على الصحة")]
+    public GameObject healthPickupPrefab; 
+    // -------------------------
 
     [Tooltip("التأثير البصري الذي يظهر عند موت العدو (اختياري)")]
-    public GameObject deathVfxPrefab; // <-- هذا هو التأثير البصري
+    public GameObject deathVfxPrefab;
 
     [Tooltip("عدد الطلقات التي سيسقطها هذا العدو")]
     public int ammoAmountToDrop = 6;
@@ -24,11 +29,10 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    // --- **تم تعديل هذه الدالة** ---
     void Die()
     {
         Debug.Log(gameObject.name + " has died.");
-
-        // --- **المنطق الجديد والمعدل** ---
 
         // 1. إنشاء التأثير البصري (إذا كان موجوداً)
         if (deathVfxPrefab != null)
@@ -36,20 +40,30 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(deathVfxPrefab, transform.position, Quaternion.identity);
         }
 
-        // 2. إنشاء غنيمة الطلقات القابلة للالتقاط (إذا كانت موجودة)
+        // 2. إنشاء غنيمة الطلقات (إذا كانت موجودة)
         if (ammoPickupPrefab != null)
         {
-            GameObject droppedLoot = Instantiate(ammoPickupPrefab, transform.position, Quaternion.identity);
+            // إنشاء الغنيمة في مكان العدو
+            GameObject droppedAmmo = Instantiate(ammoPickupPrefab, transform.position, Quaternion.identity);
             
-            AmmoPickup pickupScript = droppedLoot.GetComponent<AmmoPickup>();
-            if (pickupScript != null)
+            // ضبط كمية الطلقات في الغنيمة
+            AmmoPickup ammoScript = droppedAmmo.GetComponent<AmmoPickup>();
+            if (ammoScript != null)
             {
-                pickupScript.ammoAmount = ammoAmountToDrop;
+                ammoScript.ammoAmount = ammoAmountToDrop;
             }
+        }
+
+        // 3. إنشاء غنيمة الصحة (إذا كانت موجودة) - **الإضافة الجديدة**
+        if (healthPickupPrefab != null)
+        {
+            // إنشاء الغنيمة بجانب غنيمة الطلقات قليلاً لتجنب التداخل
+            Vector3 healthDropPosition = transform.position + new Vector3(0.5f, 0, 0.5f);
+            Instantiate(healthPickupPrefab, healthDropPosition, Quaternion.identity);
         }
         // ------------------------------------
 
-        // تدمير كائن العدو
+        // 4. تدمير كائن العدو
         Destroy(gameObject);
     }
 }
