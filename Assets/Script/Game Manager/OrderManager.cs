@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Video;
 
 public class OrderManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private GameObject vfxDeliver;
     [SerializeField] private GameObject ordereffect;
     [SerializeField] private GameObject delevereffect;
+    [SerializeField] private VideoPlayer videoPlayer;
+    [SerializeField] private VideoClip cutscene2;
 
 
 
@@ -78,13 +81,18 @@ public class OrderManager : MonoBehaviour
             {
                 evidenceincarrytext.text = "Evidence in Carry: " + carriedOrders.Count + " out of " + orders.Count;
 
-            }
-            if (deliveredOrdersCount >= orders.Count)
-            {
-                allOrdersDelivered = true;
-                wontext.gameObject.SetActive(true);
-                evidenceincarrytext.gameObject.SetActive(false);
-                evidenceinofficetext.gameObject.SetActive(false);
+                if (deliveredOrdersCount >= orders.Count)
+                {
+                    allOrdersDelivered = true;
+                    wontext.gameObject.SetActive(true);
+                    evidenceincarrytext.gameObject.SetActive(false);
+                    evidenceinofficetext.gameObject.SetActive(false);
+                    if (videoPlayer != null && cutscene2 != null)
+                    {
+                        videoPlayer.clip = cutscene2;
+                        videoPlayer.Play();
+                    }
+                }
             }
         }
     }

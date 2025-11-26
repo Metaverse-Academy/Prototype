@@ -19,7 +19,7 @@ public class Checkpoints : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Current Checkpoint: " + currentCheckpoint.name);
+//        Debug.Log("Current Checkpoint: " + currentCheckpoint.name);
     }
 
     public void AdvanceCheckpoint(GameObject triggered)
