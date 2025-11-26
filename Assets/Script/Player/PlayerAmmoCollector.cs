@@ -26,7 +26,7 @@ public class PlayerAmmoCollector : MonoBehaviour
         {
             if (weaponController != null)
             {
-                weaponController.AddReserveAmmo(pickup.ammoAmount);
+                //  weaponController.AddReserveAmmo(pickup.ammoAmount);
                 Destroy(other.gameObject);
             }
         }
