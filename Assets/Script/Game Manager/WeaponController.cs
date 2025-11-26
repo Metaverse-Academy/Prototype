@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class WeaponController : MonoBehaviour
     private bool isReloading = false;
 
     [Header("UI")]
+    [SerializeField]private Image reloadImage;
+    [SerializeField] private RawImage crosshairImage;
     public TextMeshProUGUI ammoText;
 
     [Header("Effects")]
@@ -39,6 +42,7 @@ public class WeaponController : MonoBehaviour
     {
         currentAmmoInClip = maxAmmoInClip;
         currentReserveAmmo = maxReserveAmmo;
+        reloadImage.enabled = false;
         UpdateAmmoUI();
     }
 
@@ -96,6 +100,8 @@ public class WeaponController : MonoBehaviour
     {
         isReloading = true;
         Debug.Log("Reloading...");
+        crosshairImage.enabled = false;
+        reloadImage.enabled = true;
 
         if (audioSource != null && reloadClip != null)
         {
@@ -111,6 +117,8 @@ public class WeaponController : MonoBehaviour
         currentReserveAmmo -= ammoToDeduct;
 
         UpdateAmmoUI();
+        reloadImage.enabled = false;
+        crosshairImage.enabled = true;
         isReloading = false;
         Debug.Log("Reloading finished.");
     }
