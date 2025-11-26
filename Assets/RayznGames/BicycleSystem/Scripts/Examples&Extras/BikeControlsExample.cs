@@ -1,4 +1,3 @@
-
 using rayzngames;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,7 +20,7 @@ namespace rayzngames
 
 
         BicycleVehicle bicycle;
-        public bool controllingBike;
+        public bool controllingBike = false;
         private PlayerInput playerInput;
         private InputAction accelerateAction;
         private InputAction steerAction;
@@ -31,7 +30,7 @@ namespace rayzngames
         public GameObject playerCamera; // Assign the Player's Cinemachine virtual camera
         public GameObject bikeCamera;   // Assign the Bike's Cinemachine virtual camera
 
-        private bool playerNearby = false;
+        [HideInInspector] public bool playerNearby = false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
@@ -51,7 +50,7 @@ namespace rayzngames
         // Update is called once per frame
         void Update()
         {
-            if (!controllingBike && playerNearby)
+            /** if (!controllingBike && playerNearby)
             {
                 infoText.gameObject.SetActive(true);
             }
@@ -93,7 +92,7 @@ namespace rayzngames
                 // Switch to player camera
                 if (playerCamera != null) playerCamera.SetActive(true);
                 if (bikeCamera != null) bikeCamera.SetActive(false);
-            }
+            }**/
 
             if (controllingBike && accelerateAction != null && steerAction != null && brakeAction != null)
             {
@@ -121,6 +120,63 @@ namespace rayzngames
 
         }
 
+        void OnExit(InputValue value)
+        {
+            if (!value.isPressed) return;
+            Debug.Log("Exit key pressed");
+
+            if (controllingBike)
+            {
+                Dismount();
+                Debug.Log("Dismounted bike via Exit");
+            }
+        }
+        public void Mount()
+        {
+            if (!playerNearby) return;
+            if (!controllingBike)
+            {
+                controllingBike = true;
+                Debug.Log("Mounted bike");
+                infoText.gameObject.SetActive(false);
+                if (engineAudio && !engineAudio.isPlaying)
+                    engineAudio.Play();
+
+                playerObject.SetActive(false);
+                bikeObject.SetActive(true);
+                playerCamera.SetActive(false);
+                bikeCamera.SetActive(true);
+                bicycle.InControl(true);
+            }
+        }
+        private void Dismount()
+        {
+            controllingBike = false;
+            Debug.Log("Dismounted bike");
+
+            // Place player next to bike
+            playerObject.transform.position = bikeObject.transform.position + bikeObject.transform.right * 1.5f + Vector3.up * 0.5f;
+            playerObject.SetActive(true);
+
+            // Stop bike movement
+            Rigidbody bikeRb = bikeObject.GetComponent<Rigidbody>();
+            if (bikeRb != null)
+            {
+                bikeRb.linearVelocity = Vector3.zero;
+                bikeRb.angularVelocity = Vector3.zero;
+            }
+
+            bikeObject.SetActive(false);
+
+            if (engineAudio && engineAudio.isPlaying)
+                engineAudio.Stop();
+
+            playerCamera.SetActive(true);
+            bikeCamera.SetActive(false);
+
+            bicycle.InControl(false);
+        }
+
         // Detect player entering/exiting trigger
         void OnTriggerEnter(Collider other)
         {
@@ -128,6 +184,7 @@ namespace rayzngames
             {
                 playerNearby = true;
                 infoText.gameObject.SetActive(true);
+                other.GetComponent<VehicleInteraction>().bikeControls = this;
             }
         }
 
@@ -136,8 +193,9 @@ namespace rayzngames
             if (other.gameObject == playerObject)
             {
                 playerNearby = false;
+                infoText.gameObject.SetActive(false);
+                other.GetComponent<VehicleInteraction>().bikeControls = null;
             }
         }
     }
 }
-

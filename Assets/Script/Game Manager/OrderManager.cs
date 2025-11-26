@@ -81,7 +81,8 @@ public class OrderManager : MonoBehaviour
             if (deliveredOrdersCount >= orders.Count)
             {
                 wontext.gameObject.SetActive(true);
-
+                evidenceincarrytext.gameObject.SetActive(false);
+                evidenceinofficetext.gameObject.SetActive(false);
             }
         }
     }

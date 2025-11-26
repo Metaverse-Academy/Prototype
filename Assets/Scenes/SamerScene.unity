@@ -922,11 +922,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 60
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60.000004
   orthographic: 0
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -950,8 +950,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424245416}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15123986, y: 0, z: 0, w: 0.98849714}
-  m_LocalPosition: {x: 0, y: 3.3400002, z: 3.58}
+  m_LocalRotation: {x: -0.057702385, y: 0.15498558, z: 0.009068285, w: 0.9861885}
+  m_LocalPosition: {x: -1.5923499, y: 2.31, z: -9.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1600,10 +1600,6 @@ PrefabInstance:
       propertyPath: takeWeaponText
       value: 
       objectReference: {fileID: 1313056013}
-    - target: {fileID: 2301739659777675033, guid: 85b400a991479e549a44ca2576eedd29, type: 3}
-      propertyPath: bikeControls
-      value: 
-      objectReference: {fileID: 1666174065}
     - target: {fileID: 2354395521223600670, guid: 85b400a991479e549a44ca2576eedd29, type: 3}
       propertyPath: m_Name
       value: CoolPizzaDetective
@@ -1648,10 +1644,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6744426027603532722, guid: 85b400a991479e549a44ca2576eedd29, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
+    - target: {fileID: 6467133628720360675, guid: 85b400a991479e549a44ca2576eedd29, type: 3}
+      propertyPath: bikeControls
+      value: 
+      objectReference: {fileID: 1666174065}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
