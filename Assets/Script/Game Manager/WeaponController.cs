@@ -1,7 +1,7 @@
 // WeaponController.cs
 using UnityEngine;
-using System.Collections; // <-- مهم جداً للـ Coroutines
-using TMPro; // <-- مهم جداً للتحكم بنصوص UI
+using System.Collections;
+using TMPro;
 
 public class WeaponController : MonoBehaviour
 {
@@ -14,17 +14,15 @@ public class WeaponController : MonoBehaviour
     public float range = 100f;
     public Camera playerCamera;
 
-    // --- **قسم الذخيرة الجديد** ---
     [Header("Ammo")]
-    public int maxAmmoInClip = 6;       // السعة القصوى للمشط
-    public int maxReserveAmmo = 120;    // السعة القصوى للذخيرة الاحتياطية
-    private int currentAmmoInClip;      // الذخيرة الحالية في المشط
-    private int currentReserveAmmo;     // الذخيرة الحالية في المخزن
-    public float reloadTime = 5f;       // مدة إعادة التلقيم (بالثواني)
-    private bool isReloading = false;   // متغير لمنع الإطلاق أثناء التلقيم
+    public int maxAmmoInClip = 6;
+    public int maxReserveAmmo = 120;
+    private int currentAmmoInClip;
+    private int currentReserveAmmo;
+    public float reloadTime = 5f;
+    private bool isReloading = false;
 
-    [Header("UI")] // <-- **قسم الواجهة الجديد**
-    [Tooltip("اسحب هنا كائن النص الذي يعرض عدد الطلقات")]
+    [Header("UI")]
     public TextMeshProUGUI ammoText;
 
     [Header("Effects")]
@@ -34,41 +32,33 @@ public class WeaponController : MonoBehaviour
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip gunshotClip;
-    public AudioClip reloadClip;        // <-- **مقطع صوت التلقيم الجديد**
+    public AudioClip reloadClip;
     public event System.Action OnShoot;
 
-    // --- دالة Start: لتهيئة المتغيرات عند بدء اللعبة ---
     void Start()
     {
-        // تهيئة الذخيرة
         currentAmmoInClip = maxAmmoInClip;
         currentReserveAmmo = maxReserveAmmo;
-        UpdateAmmoUI(); // تحديث الواجهة لأول مرة
+        UpdateAmmoUI();
     }
 
-    // --- دالة Update: للتحقق من حالة التلقيم ---
     void Update()
     {
-        // إذا كان المشط فارغاً واللاعب ليس في حالة تلقيم ولديه ذخيرة احتياطية
         if (currentAmmoInClip <= 0 && !isReloading && currentReserveAmmo > 0)
         {
             StartCoroutine(Reload());
         }
     }
 
-    // --- **تم تعديل دالة Shoot بالكامل** ---
     public void Shoot()
     {
-        // لا تطلق النار إذا كان السلاح في حالة تلقيم أو المشط فارغ
         if (isReloading || currentAmmoInClip <= 0)
         {
-            // يمكنك إضافة صوت "نقر" هنا للإشارة إلى أن المشط فارغ
             return;
         }
 
-        // إنقاص طلقة واحدة من المشط
         currentAmmoInClip--;
-        UpdateAmmoUI(); // تحديث الواجهة بعد الإطلاق
+        UpdateAmmoUI();
 
         OnShoot?.Invoke();
         if (playerTransform != null && playerCamera != null)
@@ -102,35 +92,29 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    // --- **دالة Coroutine جديدة لإعادة التلقيم** ---
     IEnumerator Reload()
     {
         isReloading = true;
         Debug.Log("Reloading...");
 
-        // تشغيل صوت التلقيم
         if (audioSource != null && reloadClip != null)
         {
             audioSource.PlayOneShot(reloadClip);
         }
 
-        // الانتظار لمدة 5 ثوانٍ
         yield return new WaitForSeconds(reloadTime);
 
-        // حساب عدد الطلقات التي سيتم نقلها
         int ammoToReload = maxAmmoInClip - currentAmmoInClip;
         int ammoToDeduct = Mathf.Min(ammoToReload, currentReserveAmmo);
 
-        // تحديث الذخيرة
         currentAmmoInClip += ammoToDeduct;
         currentReserveAmmo -= ammoToDeduct;
 
-        UpdateAmmoUI(); // تحديث الواجهة بعد التلقيم
+        UpdateAmmoUI();
         isReloading = false;
         Debug.Log("Reloading finished.");
     }
 
-    // --- **دالة جديدة لتحديث واجهة المستخدم** ---
     void UpdateAmmoUI()
     {
         if (ammoText != null)
@@ -139,4 +123,12 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    // --- **الدالة الجديدة التي أضفناها لالتقاط الذخيرة** ---
+    public void AddReserveAmmo(int amount)
+    {
+        currentReserveAmmo += amount;
+        Debug.Log("Picked up " + amount + " ammo. Total reserve: " + currentReserveAmmo);
+        UpdateAmmoUI(); // تحديث الواجهة لتعرض العدد الجديد
+    }
+    // ---------------------------------------------------------
 }

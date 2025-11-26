@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections; // <-- **مهم جداً:** أضف هذا السطر لاستخدام الـ Coroutines
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,33 +11,38 @@ public class PlayerHealth : MonoBehaviour
     private float currentHealth;
 
     [Header("Health UI")]
-    [Tooltip("اسحب هنا كائن 'Heart_Fill' الذي يمثل القلب الممتلئ")]
     public Image healthHeartImage;
 
-    [Header("Damage Effect")] // <-- **القسم الجديد الذي أضفناه**
-    [Tooltip("اسحب هنا كائن الـ Volume الذي يمثل تأثير الضربة")]
+    [Header("Damage Effect")]
     public GameObject hitEffectVolume;
-    [Tooltip("المدة التي سيبقى فيها التأثير ظاهراً (بالثواني)")]
     public float effectDuration = 0.25f;
+    private bool isEffectActive = false;
 
-    private bool isEffectActive = false; // لمنع تشغيل التأثير بشكل متداخل
+    // --- **القسم الجديد الذي أضفناه** ---
+    [Header("Death Settings")]
+    [Tooltip("اسحب هنا الكائن الذي يحمل سكربت UIManager")]
+    public UIManager uiManager;
+    // ------------------------------------
 
     void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthUI();
 
-        // التأكد من أن التأثير معطل في البداية
         if (hitEffectVolume != null)
         {
             hitEffectVolume.SetActive(false);
         }
+
+        // (اختياري ولكن موصى به) التأكد من ربط UIManager
+        if (uiManager == null)
+        {
+            Debug.LogError("لم يتم ربط UIManager في PlayerHealth! اسحب الكائن الذي يحمل السكربت إلى الخانة المخصصة.", this);
+        }
     }
 
-    // --- **تم تعديل هذه الدالة** ---
     public void TakeDamage(float amount)
     {
-        // لا تفعل شيئاً إذا كان اللاعب ميتاً بالفعل
         if (currentHealth <= 0) return;
 
         currentHealth -= amount;
@@ -49,12 +54,10 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
         Debug.Log("Player took " + amount + " damage. Current health: " + currentHealth);
 
-        // --- **الإضافة الجديدة: تشغيل تأثير الضربة** ---
         if (hitEffectVolume != null && !isEffectActive)
         {
             StartCoroutine(PlayHitEffect());
         }
-        // ---------------------------------------------
 
         if (currentHealth <= 0f)
         {
@@ -66,24 +69,38 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthHeartImage != null)
         {
-            float healthPercentage = currentHealth / maxHealth;
-            healthHeartImage.fillAmount = healthPercentage;
+            healthHeartImage.fillAmount = currentHealth / maxHealth;
         }
     }
 
+    // --- **تم تعديل هذه الدالة بالكامل** ---
     void Die()
     {
         Debug.Log("Player Died!");
+
+        // 1. تحقق من وجود UIManager ثم قم بإظهار شاشة الموت
+        if (uiManager != null)
+        {
+            uiManager.ShowDeathScreen();
+        }
+        else
+        {
+            // إذا لم يتم ربط UIManager، قم بإعادة تحميل المشهد كحل بديل
+            Debug.LogWarning("UIManager غير مربوط، سيتم إعادة تحميل المشهد مباشرة.");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            return; // الخروج من الدالة
+        }
+
+        // 2. إيقاف اللاعب (يمكنك تعطيل سكربت الحركة أو الكائن بأكمله)
+        // تعطيل الكائن بأكمله هو الأسهل
         gameObject.SetActive(false);
 
-        Cursor.visible = true;
+        // 3. (مهم) إظهار مؤشر الفأرة لكي يتمكن اللاعب من الضغط على الزر
         Cursor.lockState = CursorLockMode.None;
-        //    FindFirstObjectByType<UIManager>().ShowDeathScreen();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
+        Cursor.visible = true;
     }
+    // ------------------------------------
 
-    // --- **الدالة الجديدة التي أضفناها لتشغيل التأثير** ---
     private IEnumerator PlayHitEffect()
     {
         isEffectActive = true;
