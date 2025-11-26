@@ -138,8 +138,5 @@ public class WeaponController : MonoBehaviour
             ammoText.text = currentAmmoInClip + " / " + currentReserveAmmo;
         }
     }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 }

@@ -21,8 +21,8 @@ public class PlayerAmmoCollector : MonoBehaviour
     // دالة OnTriggerEnter تبقى كما هي تماماً
     private void OnTriggerEnter(Collider other)
     {
-        AmmoPickup pickup = other.GetComponent<AmmoPickup>();
-        if (pickup != null)
+        //AmmoPickup pickup = other.GetComponent<AmmoPickup>();
+        // if (pickup != null)
         {
             if (weaponController != null)
             {
