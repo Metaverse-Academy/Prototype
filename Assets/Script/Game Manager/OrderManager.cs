@@ -69,7 +69,7 @@ public class OrderManager : MonoBehaviour
         {
             if (evidenceinofficetext != null)
             {
-                evidenceinofficetext.text = "Evidence in Office: " + deliveredOrdersCount;
+                evidenceinofficetext.text = "Bring back the evidence to the office ";
 
 
             }

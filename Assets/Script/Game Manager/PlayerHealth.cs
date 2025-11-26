@@ -75,7 +75,14 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Player Died!");
         gameObject.SetActive(false);
+<<<<<<< Updated upstream
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+=======
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        FindFirstObjectByType<UIManager>().ShowDeathScreen();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+>>>>>>> Stashed changes
     }
 
     // --- **الدالة الجديدة التي أضفناها لتشغيل التأثير** ---
