@@ -28,7 +28,8 @@ public class OrderManager : MonoBehaviour
     public TextMeshProUGUI evidenceincarrytext;
     [SerializeField] private TextMeshProUGUI wontext;
     private List<GameObject> carriedOrders = new List<GameObject>();
-    public int deliveredOrdersCount = 0;
+    private int deliveredOrdersCount = 0;
+    public bool allOrdersDelivered = false;
     void Awake()
     {
         Instantiate(delevereffect, deliveryLocation.position + Vector3.up * 0.1f, Quaternion.identity);
@@ -80,6 +81,7 @@ public class OrderManager : MonoBehaviour
             }
             if (deliveredOrdersCount >= orders.Count)
             {
+                allOrdersDelivered = true;
                 wontext.gameObject.SetActive(true);
                 evidenceincarrytext.gameObject.SetActive(false);
                 evidenceinofficetext.gameObject.SetActive(false);

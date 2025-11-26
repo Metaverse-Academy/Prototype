@@ -37,7 +37,7 @@ public class PartnerAI : MonoBehaviour
 
     void Update()
     {
-        if (orderManager != null && orderManager.deliveredOrdersCount >= orderManager.orders.Count)
+        if (orderManager != null && orderManager.allOrdersDelivered)
         {
             if (!meetingBoss)
             {
