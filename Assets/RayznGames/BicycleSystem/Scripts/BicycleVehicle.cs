@@ -13,8 +13,8 @@ namespace rayzngames
 		public bool braking { get; set; }
 		public bool isInControl { get; private set; }
 		public bool slipFront { get; private set; }
-		public bool slipRear{ get; private set; }
-		
+		public bool slipRear { get; private set; }
+
 		Rigidbody rb;
 
 		[Header("Power/Braking")]
@@ -22,7 +22,7 @@ namespace rayzngames
 		[Tooltip("The force applied to the rear wheel when verticalinput si provided / is 0 when braking")]
 		[SerializeField] public float motorForce = 50f;
 		[Tooltip("The maximum braking force applied when braking input is provided")]
-		[SerializeField]public float brakeForce = 100;
+		[SerializeField] public float brakeForce = 100;
 		[Tooltip("The braking power used on the front wheel, the moment braking is enabled. (0 = no braking / 1 = brakeforce)")]
 		[Range(0, 1)] public float frontBrakePower = 1f;
 		[Tooltip("The braking power used on the rear wheel, the moment braking is enabled. (0 = no braking / 1 = brakeforce)")]
@@ -87,7 +87,7 @@ namespace rayzngames
 		[SerializeField] public float currentSpeed { get; private set; }
 		protected private WheelHit frontInfo;
 		protected private WheelHit rearInfo;
-		
+
 		void Awake()
 		{
 			rb = GetComponent<Rigidbody>();
@@ -106,7 +106,7 @@ namespace rayzngames
 				rearTrail = rearTrailContact.transform.GetChild(0).GetComponent<TrailRenderer>();
 				rearSmoke = rearTrailContact.transform.GetChild(1).GetComponent<ParticleSystem>();
 			}
-			else {Debug.LogWarning ("Easy Bike WARNING: \n Rear TrailsContact prefab has not been assigned  Slip Trails and Smoke will not appear"); }
+			else { Debug.LogWarning("Easy Bike WARNING: \n Rear TrailsContact prefab has not been assigned  Slip Trails and Smoke will not appear"); }
 
 			//To stop bike from Jittering
 			frontWheel.ConfigureVehicleSubsteps(5, 12, 15);
@@ -119,21 +119,21 @@ namespace rayzngames
 		{
 			if (isInControl)
 			{
-				HandleEngine();				
+				HandleEngine();
 				HandleSteering();
 				LeanOnTurnLocal();
 				UpdateHandles();
 			}
 			UpdateWheels();
 			EmitTrail();
-			Speed_O_Meter();			
+			Speed_O_Meter();
 		}
 
 		public void InControl(bool state)
 		{
 			if (isInControl != state)
 			{
-				isInControl = state;				
+				isInControl = state;
 			}
 		}
 
@@ -148,12 +148,12 @@ namespace rayzngames
 				rb.constraints = RigidbodyConstraints.None;
 			}
 		}
-		 
+
 		public bool OnGround()
 		{
 			return controlContact.GetContact();
 		}
-		
+
 		private void HandleEngine()
 		{
 			rearWheel.motorTorque = braking ? 0f : verticalInput * motorForce;
@@ -250,7 +250,7 @@ namespace rayzngames
 			frontSideCoeff = frontInfo.sidewaysSlip / frontWheel.sidewaysFriction.extremumSlip;
 			//FWD
 			frontFWD = frontInfo.forwardSlip / frontWheel.forwardFriction.extremumSlip;
-			rearFWD = rearInfo.forwardSlip / rearWheel.forwardFriction.extremumSlip;	
+			rearFWD = rearInfo.forwardSlip / rearWheel.forwardFriction.extremumSlip;
 
 			if (frontTrailContact != null) //We can get contacts
 			{
@@ -264,7 +264,7 @@ namespace rayzngames
 				{
 					frontTrail.emitting = false;
 					if (frontSmoke.isPlaying) { frontSmoke.Stop(); }
-				}			
+				}
 			}
 			//We can get contacts
 			if (rearTrailContact != null)
@@ -292,14 +292,14 @@ namespace rayzngames
 				}
 				else
 				{
-					return false;					
+					return false;
 				}
 			}
 			else
 			{
 				return false;
-			}			
-		 }
+			}
+		}
 
 		bool SlipRear()
 		{
@@ -311,7 +311,7 @@ namespace rayzngames
 				}
 				else
 				{
-					return false;				
+					return false;
 				}
 			}
 			else
@@ -333,7 +333,7 @@ namespace rayzngames
 			currentSpeed = rb.linearVelocity.magnitude;
 		}
 
-		#region  Extra Setup Functions
+		// Extra Setup Functions
 
 		[ContextMenu("Set Wheels Springs and Frictions (Unity Default)")]
 		public void DefaultSuspensionParameters()
@@ -352,9 +352,9 @@ namespace rayzngames
 			susSpring.damper = 3 * rb.mass;
 			susSpring.targetPosition = rearWheel.suspensionSpring.targetPosition;
 
-			rearWheel.suspensionSpring = susSpring;			
+			rearWheel.suspensionSpring = susSpring;
 
-			FrictionParameters_Motorbike();			
+			FrictionParameters_Motorbike();
 		}
 		[ContextMenu("Set Wheels Springs and Frictions (Motorbike)")]
 		public void MotorbikeSuspensionParameters()
@@ -398,7 +398,7 @@ namespace rayzngames
 			//Frictions
 			FrictionParameters_Bicycle();
 		}
-		
+
 		public void FrictionParameters_Motorbike()
 		{
 			WheelFrictionCurve frontForwardFrictionCurve = CreateFrictionCurve(0.3f, 1.25f, 0.5f, 1f, 1f);
@@ -473,40 +473,6 @@ namespace rayzngames
 			Debug.Log("Rear Grip = " + rearGrip + "// " + " Front Grip = " + frontGrip);
 		}
 
-		#endregion
 	}
-
-	#region CustomInspector
-	[CustomEditor(typeof(BicycleVehicle))]
-	//We need to extend the Editor
-	public class BicycleInspector : Editor
-	{
-		//Here we grab a reference to our component
-		BicycleVehicle bicycle;
-
-		private void OnEnable()
-		{
-			//target is by default available for you in Editor		
-			bicycle = target as BicycleVehicle;
-		}
-
-		//Here is the meat of the script
-		public override void OnInspectorGUI()
-		{
-			SetLabel("Easy Bike System", 30, FontStyle.Bold, TextAnchor.UpperLeft);
-			base.OnInspectorGUI();			
-			SetLabel("", 12, FontStyle.Italic, TextAnchor.LowerRight);
-			SetLabel("Love from RayznGames", 12, FontStyle.Italic, TextAnchor.LowerRight);
-		}
-		void SetLabel(string title, int size, FontStyle style, TextAnchor alignment)
-		{			
-			GUI.skin.label.alignment = alignment;
-			GUI.skin.label.fontSize = size;
-			GUI.skin.label.fontStyle = FontStyle.Bold;
-			GUILayout.Label(title);
-		}		
-	}	
-
-	#endregion
 
 }

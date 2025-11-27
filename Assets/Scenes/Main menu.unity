@@ -1577,7 +1577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutscenePlayer
   videoPlayer: {fileID: 1475050072}
-  nextSceneName: Game
+  nextSceneName: Game_1
 --- !u!4 &1475050074
 Transform:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class CutscenePlayer : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
-    public string nextSceneName = "Game";
+    public string nextSceneName;
 
     void Start()
     {

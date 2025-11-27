@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
         if (deathScreenPanel != null)
         {
             deathScreenPanel.SetActive(true);
+            Cursor.visible = true; // إظهار المؤشر عند الموت
+            Cursor.lockState = CursorLockMode.None; // تحرير المؤشر
         }
     }
 
@@ -29,7 +31,7 @@ public class UIManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         // تأكد من أن اسم المشهد "MainMenu" مطابق تماماً للاسم في ملفات المشروع
-        SceneManager.LoadScene("Main menu"); 
+        SceneManager.LoadScene("Main menu");
     }
     // ------------------------------------
 }
