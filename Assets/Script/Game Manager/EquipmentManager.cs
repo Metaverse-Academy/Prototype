@@ -14,7 +14,7 @@ public class EquipmentManager : MonoBehaviour
     public LayerMask weaponLayerMask;
     private GameObject highlightedWeapon;
 
-    [HideInInspector]public GameObject currentWeapon;
+    [HideInInspector] public GameObject currentWeapon;
     [SerializeField] private TextMeshProUGUI takeWeaponText;
 
     void Update()
@@ -34,7 +34,7 @@ public class EquipmentManager : MonoBehaviour
                 highlightedWeapon.GetComponent<Outline>().enabled = false;
                 highlightedWeapon = null;
             }
-        
+
             return;
         }
 
@@ -43,7 +43,7 @@ public class EquipmentManager : MonoBehaviour
         if (visibleWeapon != null)
         {
             takeWeaponText.gameObject.SetActive(true);
-            takeWeaponText.text = "Press F/□ to take weapon";
+            takeWeaponText.text = "Press F to take weapon";
             if (highlightedWeapon != visibleWeapon.gameObject)
             {
                 if (highlightedWeapon != null)
@@ -67,36 +67,36 @@ public class EquipmentManager : MonoBehaviour
     }
 
     public void OnTakeGun(InputValue value)
-{
-    if (!value.isPressed) return;
-
-    if (currentWeapon == null)
     {
-        Collider visibleWeapon = FindVisibleWeapon();
-        if (visibleWeapon != null)
+        if (!value.isPressed) return;
+
+        if (currentWeapon == null)
         {
-            Pickup(visibleWeapon.gameObject);
-            takeWeaponText.gameObject.SetActive(false);
+            Collider visibleWeapon = FindVisibleWeapon();
+            if (visibleWeapon != null)
+            {
+                Pickup(visibleWeapon.gameObject);
+                takeWeaponText.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            DropWeapon();
         }
     }
-    else
-    {
-        DropWeapon();
-    }
-}
 
-   public void OnShoot(InputValue value)
-{
-    if (!value.isPressed) return;
-    if (currentWeapon == null) return;
-
-    WeaponController wc = currentWeapon.GetComponent<WeaponController>();
-    if (wc != null)
+    public void OnShoot(InputValue value)
     {
-        wc.playerTransform = player;
-        wc.Shoot();
+        if (!value.isPressed) return;
+        if (currentWeapon == null) return;
+
+        WeaponController wc = currentWeapon.GetComponent<WeaponController>();
+        if (wc != null)
+        {
+            wc.playerTransform = player;
+            wc.Shoot();
+        }
     }
-}
 
     Collider FindVisibleWeapon()
     {
@@ -144,7 +144,7 @@ public class EquipmentManager : MonoBehaviour
         currentWeapon.transform.SetParent(weaponHolder);
         currentWeapon.transform.localPosition = Vector3.zero;
         currentWeapon.transform.localRotation = Quaternion.identity;
-         
+
         Animator anim = player.GetComponentInChildren<Animator>();
         anim.SetBool("HasGun", true);
     }
@@ -156,26 +156,26 @@ public class EquipmentManager : MonoBehaviour
     }
 
     public void OnDropWeaponRelease()
-{
-    if (currentWeapon == null) return;
+    {
+        if (currentWeapon == null) return;
 
-    // Detach weapon
-    currentWeapon.transform.SetParent(null);
+        // Detach weapon
+        currentWeapon.transform.SetParent(null);
 
-    Rigidbody rb = currentWeapon.GetComponent<Rigidbody>();
-    Collider col = currentWeapon.GetComponent<Collider>();
+        Rigidbody rb = currentWeapon.GetComponent<Rigidbody>();
+        Collider col = currentWeapon.GetComponent<Collider>();
 
-    if (rb != null) rb.isKinematic = false;
-    if (col != null) col.enabled = true;
+        if (rb != null) rb.isKinematic = false;
+        if (col != null) col.enabled = true;
 
-    // Throw force
-    rb.AddForce(playerCamera.transform.forward * 5f + Vector3.up * 2f, ForceMode.Impulse);
+        // Throw force
+        rb.AddForce(playerCamera.transform.forward * 5f + Vector3.up * 2f, ForceMode.Impulse);
 
-    // Clear reference
-    currentWeapon = null;
-    Animator anim = player.GetComponentInChildren<Animator>();
-    anim.SetBool("HasGun", false);
-}
+        // Clear reference
+        currentWeapon = null;
+        Animator anim = player.GetComponentInChildren<Animator>();
+        anim.SetBool("HasGun", false);
+    }
 
     void OnDrawGizmosSelected()
     {
