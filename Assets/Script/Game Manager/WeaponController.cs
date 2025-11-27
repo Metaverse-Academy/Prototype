@@ -20,11 +20,11 @@ public class WeaponController : MonoBehaviour
     public int maxReserveAmmo = 120;
     private int currentAmmoInClip;
     private int currentReserveAmmo;
-    public float reloadTime = 5f;
+    public float reloadTime = 2f;
     private bool isReloading = false;
 
     [Header("UI")]
-    [SerializeField]private Image reloadImage;
+    [SerializeField] private Image reloadImage;
     [SerializeField] private RawImage crosshairImage;
     public TextMeshProUGUI ammoText;
 
