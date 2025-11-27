@@ -16,6 +16,22 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: 536a997cec73388489b0be43ec54de3a
     defaultValue: {fileID: 0}
+--- !u!114 &-8168784260606701537
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 4.249999999999999
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 405d17dd04ced2f4c8ed0eb53c1f4e07, type: 2}
 --- !u!114 &-7682248465813028845
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -32,6 +48,30 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: cd66dc462f2adce438afb176ebc5f510
     defaultValue: {fileID: 0}
+--- !u!114 &-4382702036406829706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalTrack
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects:
+    - {fileID: -8168784260606701537}
 --- !u!114 &-3279410270935139293
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,6 +296,7 @@ MonoBehaviour:
   - {fileID: 2071307030143175150}
   - {fileID: -3279410270935139293}
   - {fileID: 7418427436583747632}
+  - {fileID: -4382702036406829706}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
@@ -497,25 +538,7 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
