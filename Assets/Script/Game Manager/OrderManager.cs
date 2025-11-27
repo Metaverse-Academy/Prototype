@@ -20,7 +20,8 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private GameObject ordereffect;
     [SerializeField] private GameObject delevereffect;
     [SerializeField] private VideoPlayer videoPlayer;
-    [SerializeField] private VideoClip cutscene2;
+    [SerializeField] private GameObject playerCharacter;
+    [SerializeField] private GameObject playerHUD;
 
 
 
@@ -83,17 +84,35 @@ public class OrderManager : MonoBehaviour
 
                 if (deliveredOrdersCount >= orders.Count)
                 {
-                    allOrdersDelivered = true;
                     wontext.gameObject.SetActive(true);
                     evidenceincarrytext.gameObject.SetActive(false);
                     evidenceinofficetext.gameObject.SetActive(false);
-                    if (videoPlayer != null && cutscene2 != null)
+                    if (videoPlayer != null)
                     {
-                        videoPlayer.clip = cutscene2;
+                        playerHUD.SetActive(false);
+                        playerCharacter.SetActive(false);
                         videoPlayer.Play();
+                        videoPlayer.loopPointReached += OnCutsceneEnd;
                     }
                 }
             }
         }
+
+        
     }
+     private void OnCutsceneEnd(VideoPlayer vp)
+        {
+            // Unsubscribe to prevent multiple calls
+            vp.loopPointReached -= OnCutsceneEnd;
+
+            // Stop the video player
+            vp.Stop();
+            allOrdersDelivered = true;
+
+            // Re-enable player and potentially load next mission elements
+            playerCharacter.SetActive(true);
+            playerHUD.SetActive(true);
+            // Optionally, activate elements for the next mission here
+            Debug.Log("Cutscene ended. Proceeding to next mission phase.");
+        }
 }

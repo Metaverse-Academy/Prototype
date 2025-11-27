@@ -195,7 +195,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275805466}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 2b503999442f24a4bbdb07d6fb7e7862, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: d09635e0c03a6be4fa1861f4fa612bda, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 275805470}
@@ -217,7 +217,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
@@ -555,6 +555,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1696998099}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1475050073}
+        m_TargetAssemblyTypeName: CutscenePlayer, Assembly-CSharp
+        m_MethodName: PlayVideo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1536,7 +1548,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1475050071}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 2b503999442f24a4bbdb07d6fb7e7862, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: d09635e0c03a6be4fa1861f4fa612bda, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -1558,7 +1570,7 @@ VideoPlayer:
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
@@ -1576,8 +1588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b20f2fb98b09014cbbf8ed56ba27269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutscenePlayer
-  videoPlayer: {fileID: 1475050072}
+  videoPlayer: {fileID: 275805467}
   nextSceneName: Game_1
+  backgroundMusicObject: {fileID: 1742953862}
 --- !u!4 &1475050074
 Transform:
   m_ObjectHideFlags: 0
